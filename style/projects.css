@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;600;900&display=swap');
+body {
+    background-color: #E7DFD8;
+    font-family: "Archivo", sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position:sticky;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 70px;
+    
+}
+
+.navbar ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    color: black;
+}
+
+.navbar li{
+    display:inline;
+    margin: 100px;
+    
+}
+
+h1{
+    font-size: 60px;   
+    text-align: center;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+}
+
+.AEI{
+    flex: 1;
+    margin-left: 50px;
+}
+
+.AEI img{
+    width: 500px;
+    height: auto;
+}
+
+.AEI h2{
+    margin-left: 180px;
+}
+
+.MultiAgent{
+    flex:1;
+}
+
+.MultiAgent img{
+    margin-top: 50px;
+    width: 300px;
+    height: auto;
+    margin-left: 30px;
+}
+
+.MultiAgent h2{
+    margin-left: 50px;
+}
+
+.cody{
+    flex: 1;
+}
+
+.cody img{
+    width: 300px;
+    margin-top:50px;
+    height: auto;
+}
+
+.cody h2{
+    margin-top: 40px;
+    margin-left: 80px;
+}

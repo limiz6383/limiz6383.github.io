@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;600;900&display=swap');
+
+body {
+    background-color: #E7DFD8;
+    font-family: "Archivo", sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position:sticky;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 70px;
+    
+}
+
+.navbar ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    color: black;
+}
+
+.navbar li{
+    display:inline;
+    margin: 100px;
+    
+}
+
+.container{
+    border: 2px solid black;
+    height: 550px;
+    width: 85%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+.content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+}
+.content left{
+    flex:1;
+}
+
+.left h1{
+    font-size: 50px;
+    margin-top: 70px;
+    margin-left: 25%;
+}
+
+.left p{
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    width: 55%;
+    margin-top: 50px;
+    margin-left: 12%;
+}
+
+.content right{
+    flex: 2;
+
+}
+
+img{
+    max-width: 120%;
+    height: auto;
+    margin-top:100px;
+    margin-left: -120px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    padding :30px;
+    max-width: 50%;
+    margin-left: 60px;
+}
+
+#resume {
+    width: 30%;
+    font-size: 15px;
+    margin-right: 20px;
+    margin-left: 40px;
+    height: 30px;
+    margin-top: -30px;
+    background-color: #E7DFD8;
+
+}
+
+#email {
+    width: 30%;
+    font-size: 15px;
+    margin-right: 20px;
+    height: 30px;
+    margin-top: -30px;
+    margin-left: 60px;
+    background-color: #E7DFD8
+}

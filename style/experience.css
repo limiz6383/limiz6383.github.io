@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;600;900&display=swap');
+body {
+    background-color: #E7DFD8;
+    font-family: "Archivo", sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position:sticky;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 70px;
+    
+}
+
+.navbar ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    color: black;
+}
+
+.navbar li{
+    display:inline;
+    margin: 100px;
+    
+}
+
+.content{
+    display:flex;
+    flex-direction: row;
+    max-width: 100%;
+    
+}
+.left{
+    flex:1;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.left h1{
+    font-size: 60px;   
+}
+
+.right{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.Mercari{
+    display:flex;
+    flex-direction: row;
+}
+
+.year{
+    flex:1;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.5;
+
+}
+/* .year h2{
+    margin-top: 40px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: 300;
+} */
+
+.des{
+    flex: 2;
+}
+
+.des p{
+    font-size: 20px;
+    font-weight: 300; 
+    line-height: 1.5;
+    margin-right: 50px;
+    text-align: justify;
+}
+
+.AEI{
+    display:flex;
+    flex-direction: row;  
+}
+
+.StatPass{
+    display:flex;
+    flex-direction: row;
+}
+
+.broke{
+    display: flex;
+    flex-direction: row;
+}
+
+.Skills\.tech{
+    display: flex;
+    flex-direction: row;
+}

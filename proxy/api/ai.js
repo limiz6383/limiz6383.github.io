@@ -21,6 +21,8 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
+  // Health check: open the URL in a browser to confirm it deployed and the key is set (never reveals the key).
+  if (req.method === 'GET') return res.status(200).json({ ok: true, keySet: !!process.env.ANTHROPIC_API_KEY, allowed: ALLOWED });
   if (req.method === 'OPTIONS') return res.status(ok ? 204 : 403).end();
   if (!ok) return res.status(403).json({ error: 'forbidden_origin' });
   if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
@@ -49,7 +51,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({ model, max_tokens: MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),
     });
     const j = await r.json();
-    if (!r.ok) return res.status(502).json({ error: 'upstream', status: r.status });
+    if (!r.ok) return res.status(502).json({ error: 'upstream', status: r.status, detail: (j && j.error && j.error.type) || undefined });
     const text = (j.content || []).map(c => c.text || '').join('');
     return res.status(200).json({ text });
   } catch (e) {

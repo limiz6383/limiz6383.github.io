@@ -450,7 +450,7 @@ QA.forEach(([q,a])=>{
 });
 show(QA[0][0], QA[0][1]); chips.firstChild.setAttribute('aria-pressed','true');
 
-const AI_PROXY = '';
+const AI_PROXY = 'https://limiz6383githubio-proxy-nl1xkgr8m-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
     const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\n\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default'})});

@@ -380,7 +380,7 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
       <article class="proj">
         <h3>Trip Planner</h3>
         <p class="kind">An AI travel planner, built with Next.js, Supabase and Claude</p>
-        <p class="lead">Describe a trip and get a day-by-day itinerary you can revise by talking to it. Unlike most planners, it builds around what you have already booked and steers you away from the tourist traps.</p>
+        <p class="lead">Most planners start from a blank page. This one starts from what is already fixed in your trip and from how you actually travel, then builds a day-by-day itinerary you can reshape by talking to it.</p>
         <div class="links"><a class="btn primary" href="https://trip-planner-tan-three.vercel.app">Open the live demo</a><a class="btn" href="https://github.com/limiz6383/trip-planner">Read the code</a></div>
         <p class="note">The hosted demo runs on sample data and never calls an AI API, so nobody's usage is billed. Web research and venue lookup run only in live mode with your own keys.</p>
         <div class="gal-head"><span>Screens from the product</span>
@@ -392,10 +392,10 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
           <figure><img width="1100" height="688" src="{{IMG_DAY}}" alt="Day-by-day plan with times, costs, revise and lock controls, plus budget per day" loading="lazy"><figcaption>Day by day, with revise and lock, and budget per day</figcaption></figure>
         </div>
         <dl class="terms">
-          <div><dt>Plans around what you've already booked</dt><dd>Most planners start from a blank page. This one treats a flight, a concert at 8:15 pm or a dinner reservation as an anchor and builds the rest of the day around it. Anything you lock stays put when you revise.</dd></div>
+          <div><dt>Bookings become anchors</dt><dd>A flight, a concert at 8:15 pm or a dinner reservation is treated as a fixed point, and the rest of the day is built around it. Anything you lock stays put when you revise.</dd></div>
           <div><dt>Local, not touristy</dt><dd>A dial runs from local to touristy. Community posts are ranked by how authentic the author is, and real venues come from OpenStreetMap, scored for how local they are. Star ratings are left out on purpose, because they reward whatever the most tourists already visited.</dd></div>
-          <div><dt>Revise by talking, change on your terms</dt><dd>You discuss the trip with the AI, and the plan only changes when you press Apply. Every apply makes a new version you can review.</dd></div>
-          <div><dt>Learns how you travel</dt><dd>It asks about budget, group size and travel style, and builds a travel style from your past trips, so the first plan already looks like yours.</dd></div>
+          <div><dt>Consult the AI at every step</dt><dd>Talk any part of the trip through with it, and the plan only changes when you press Apply. Every apply makes a new version you can review.</dd></div>
+          <div><dt>Personalized from the first plan</dt><dd>It asks about budget, group size and travel style, and learns a style from your past trips, so the first plan already looks like yours.</dd></div>
           <div><dt>Your food picks become real meals</dt><dd>Tick a dish in the destination guide and it shows up as a meal at a real restaurant, with several picks grouped at one venue where that makes sense.</dd></div>
         </dl>
       </article>
@@ -403,7 +403,7 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
       <article class="proj">
         <h3>Cycle Insights</h3>
         <p class="kind">An AI insights tool for Oura data, built in Python with Claude</p>
-        <p class="lead">Oura is not built to specialize in women's health. This tool takes your Oura data and combines it with menstrual-cycle research to give you insights specific to your cycle, and it refuses to send one that breaks its own safety rules.</p>
+        <p class="lead">Oura is not built to specialize in women's health. This tool reads your Oura data against your own baseline and your cycle stage, and turns it into a short insight with nutrition guidance, but only if it passes its own safety review.</p>
         <div class="links"><a class="btn primary" href="https://github.com/limiz6383/cycle-insights-public">Read the code and methodology</a><a class="btn" href="https://github.com/limiz6383/cycle-insights-public/tree/main/docs/demo">Open the demo page</a></div>
         <p class="note">I built it as a personal tool for one user, and it is not a clinical device. The screens below come from the demo in the repo, which uses invented data, but the rules, sources and checks are the real ones.</p>
         <div class="gal-head"><span>Screens from the demo</span>
@@ -416,7 +416,7 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
         </div>
         <dl class="terms">
           <div><dt>Your own baseline, not an average</dt><dd>Most cycle apps compare you to a population norm. This reads last night's heart rate, HRV and skin temperature against your personal baseline and matches the pattern to where you are in your cycle.</dd></div>
-          <div><dt>One short insight, grounded in research</dt><dd>You get a brief, hedged note with source tags and at most one action, instead of a dashboard of numbers to interpret. Every claim traces to a PubMed or DOI reference, and a verifier checks each one.</dd></div>
+          <div><dt>One short insight, grounded in research</dt><dd>You get a brief, hedged note with source tags and at most one action, such as a nutrition suggestion for your stage, instead of a dashboard of numbers to interpret. Every claim traces to a PubMed or DOI reference, and a verifier checks each one.</dd></div>
           <div><dt>It refuses to send what breaks its own rules</dt><dd>A second model from a different family reviews every draft before it goes out. Unsafe drafts are held, never sent.</dd></div>
           <div><dt>Safe by design</dt><dd>No diagnoses, no numeric food targets, no body-composition talk, and escalation triggers that route to real clinical care.</dd></div>
           <div><dt>Built so failures improve it</dt><dd>Low-rated insights become new test scenarios. The eval framework is most of the project, with rule checks, single-rule LLM judges and adversarial scenarios.</dd></div>
@@ -425,8 +425,8 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
 
       <article class="proj">
         <h3>Fintracker</h3>
-        <p class="kind">An AI money assistant, built in Python with Claude. It runs locally and is called Fintracker</p>
-        <p class="lead">It connects to your bank through SimpleFIN and your brokerage through SnapTrade, read-only, and turns your transactions and holdings into a short, ordered list of next steps, with the reasoning shown. Unlike most finance apps, your data never leaves your machine.</p>
+        <p class="kind">A finance dashboard and advisor, built in Python with Claude, that runs locally</p>
+        <p class="lead">It connects to your bank through SimpleFIN and your brokerage through SnapTrade, read-only, so every number comes from your real accounts. Net worth, spending and investing live in one place, and the advice follows your own financial goals.</p>
         <div class="links"><a class="btn primary" href="https://limiz6383.github.io/finance-tracker-public/demo/">Open the demo</a><a class="btn" href="https://github.com/limiz6383/finance-tracker-public">Read the code</a></div>
         <p class="note">It is informational only, not financial advice, and it never trades. The demo and the screens below use fake data, and nothing you click leaves the page.</p>
         <div class="gal-head"><span>Screens from the demo</span>
@@ -437,8 +437,9 @@ footer .fl{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);margin-top:var(--
           <figure><img width="1100" height="739" src="{{IMG_FT3}}" alt="Fintracker chat panel with suggested questions such as whether to buy a $400 jacket" loading="lazy"><figcaption>Ask about your money, answered from your own numbers</figcaption></figure>
         </div>
         <dl class="terms">
+          <div><dt>Net worth and spending in one view</dt><dd>Balances from every connected account roll up into one net worth, and spending is sorted by category, with unusual charges and recurring subscriptions flagged.</dd></div>
           <div><dt>Your data stays with you</dt><dd>There is no account and no cloud. Everything sits in one local file, and the dashboard only runs on your own computer.</dd></div>
-          <div><dt>A next step, not a dashboard of charts</dt><dd>It gives an ordered to-do list: what to buy, trim or hold, how much and by when. Each step shows its reasoning, what would make it wrong, and its sources.</dd></div>
+          <div><dt>The Invest tab gives next steps, not charts</dt><dd>An ordered to-do list of what to buy, trim or hold, how much and by when, shaped by your goals and by economic and political context. Each step shows its reasoning, what would make it wrong, and its sources.</dd></div>
           <div><dt>A checker blocks advice that contradicts your data</dt><dd>Selling what you do not own, spending cash you do not have, or selling a gain before it is long-term gets blocked, not listed. Numbers are computed from your accounts, never guessed.</dd></div>
           <div><dt>It knows you</dt><dd>One file holds your goals, risk tolerance and things you never want to own, and every answer reads it first.</dd></div>
           <div><dt>Ask before you spend</dt><dd>Ask "should I buy a $400 jacket?" and get an answer from your own cash flow, goals and plans.</dd></div>

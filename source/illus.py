@@ -100,17 +100,32 @@ JS='''
 })();
 '''
 
+_SC={
+'Trip Planner':(
+ '<path d="M14 10h42a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H34l-9 8v-8H14a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z"/>'
+ '<circle cx="23" cy="21" r="1.6" class="dotf"/><circle cx="35" cy="21" r="1.6" class="dotf"/><circle cx="47" cy="21" r="1.6" class="dotf"/>'
+ '<rect x="16" y="64" width="54" height="40" rx="6"/><path d="M33 64v-7a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v7M30 64v40M56 64v40"/>'
+ '<path d="M120 62C108 48 102 40 102 31a18 18 0 0 1 36 0c0 9-6 17-18 31z"/><circle cx="120" cy="31" r="6" class="fill"/>',
+ '<path class="trail" d="M76 84C104 96 134 88 122 70"/><path class="trail" d="M118 76l4-7 7 4"/>'),
+'Cycle Insights':(
+ '<circle cx="24" cy="24" r="11"/><circle cx="60" cy="24" r="11"/><path class="fill" d="M60 13a11 11 0 0 0 0 22z"/>'
+ '<circle cx="96" cy="24" r="11" class="solid"/><circle cx="132" cy="24" r="11"/><path class="fill" d="M132 13a11 11 0 0 1 0 22z"/>'
+ '<path d="M40 24h8M76 24h8M112 24h8" stroke-dasharray="2 4"/>'
+ '<path d="M44 66h72c0 20-15 34-36 34S44 86 44 66z"/><path d="M62 66c-3-13 4-21 15-23 3 12-3 20-15 23zM88 66c0-9 6-16 17-16 0 9-6 16-17 16z"/>'
+ '<path d="M132 70v12M126 76h12M26 82v8M22 86h8"/>',
+ '<path class="trail" d="M62 66c-3-13 4-21 15-23 3 12-3 20-15 23z"/><circle class="acc" cx="96" cy="24" r="11"/>'),
+'Fintracker':(
+ '<path d="M12 10v94h138"/><rect x="26" y="78" width="18" height="26"/><rect x="56" y="64" width="18" height="40"/><rect x="86" y="48" width="18" height="56"/>'
+ '<ellipse cx="132" cy="96" rx="13" ry="4.5"/><path d="M119 96v-9M145 96v-9"/><ellipse cx="132" cy="87" rx="13" ry="4.5"/><path d="M119 87v-9M145 87v-9"/><ellipse cx="132" cy="78" rx="13" ry="4.5" class="fill"/>'
+ '<circle cx="134" cy="30" r="12"/><path d="M128 24l12 12M128 36l12-12" opacity="0"/><circle cx="134" cy="30" r="5"/>',
+ '<path class="trail" d="M20 62L52 46l24 8 38-30"/><path class="trail" d="M102 22l13 1-1 13"/>'),
+}
 def thumb(title):
-    nodes=FLOWS[title]; pos=[(10,4),(100,4),(100,72),(10,72)]
-    g=['<svg viewBox="0 0 160 126" role="presentation" focusable="false">']
-    for i,(ic,*_) in enumerate(nodes):
-        x,y=pos[i]
-        g.append(f'<g class="tn" style="--i:{i}" transform="translate({x},{y}) scale(.78)" filter="url(#rough)">{ICONS[ic]}</g>')
-    g.append('<g class="ta"><path d="M68 29h22M90 29l-5-4M90 29l-5 4"/><path d="M125 57v11M125 68l-4-5M125 68l4-5"/><path d="M92 97H70M70 97l5-4M70 97l5 4"/></g>')
-    g.append('</svg>')
-    return ''.join(g)
-THUMBCSS=('.thumb.fl{padding:8px 10px}.thumb.fl svg{color:var(--ink)}.thumb .tn{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}'
-'.thumb .tn .fill{fill:#1c1b18}.thumb .tn .dotf{fill:currentColor;stroke:none}.thumb .ta path{fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'
-'.item summary:hover .thumb .tn,.item summary:focus-visible .thumb .tn{animation:lit 2.4s linear infinite;animation-delay:calc(var(--i)*.6s)}'
-'@keyframes lit{0%,24%{stroke:var(--hand)}25%,100%{stroke:currentColor}}'
-'@media (prefers-reduced-motion:reduce){.thumb .tn{animation:none!important}}')
+    base,acc=_SC[title]
+    return f'<svg viewBox="0 0 160 116" role="presentation" focusable="false"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></svg>'
+THUMBCSS=('.thumb svg{color:var(--ink)}.thumb .sc,.thumb .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
+'.thumb .sc .fill{fill:#1c1b18}.thumb .sc .dotf{fill:currentColor;stroke:none}.thumb .sc .solid{fill:currentColor}'
+'.thumb .sa{stroke:var(--hand)}.thumb .sa .trail{stroke-dasharray:none}.thumb .sa .acc{fill:none}'
+'.item summary:hover .thumb .sa .trail,.item summary:focus-visible .thumb .sa .trail{animation:drawT 1.1s ease-out}'
+'@keyframes drawT{from{stroke-dasharray:200;stroke-dashoffset:200}to{stroke-dasharray:200;stroke-dashoffset:0}}'
+'@media (prefers-reduced-motion:reduce){.thumb .sa *{animation:none!important}}')

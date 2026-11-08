@@ -129,3 +129,48 @@ THUMBCSS=('.thumb{border:0!important;background:transparent!important}.thumb svg
 '.item summary:hover .thumb .sa .trail,.item summary:focus-visible .thumb .sa .trail{animation:drawT 1.1s ease-out}'
 '@keyframes drawT{from{stroke-dasharray:200;stroke-dashoffset:200}to{stroke-dasharray:200;stroke-dashoffset:0}}'
 '@media (prefers-reduced-motion:reduce){.thumb .sa *{animation:none!important}}')
+
+_SC['Agentic Creative Platform']=(
+ '<circle cx="34" cy="50" r="26"/><path d="M34 50V32M34 50l13 8"/>'
+ '<rect x="98" y="20" width="54" height="72" rx="5"/><circle cx="116" cy="42" r="7"/><path d="M98 86l18-20 12 12 8-8 16 14"/>',
+ '<path d="M66 56h22M88 56l-6-5M88 56l-6 5"/><path d="M142 6v10M137 11h10M88 100v8M84 104h8"/>')
+_SC['Ad Quality']=(
+ '<rect x="12" y="14" width="68" height="88" rx="5"/><circle cx="34" cy="38" r="7"/><path d="M12 92l22-26 14 14 10-10 22 22"/>'
+ '<path d="M126 20L150 29V56C150 72 140 82 126 88 112 82 102 72 102 56V29Z"/><path d="M114 54l9 9 15-18"/>',
+ '<circle cx="46" cy="58" r="36"/><path d="M20 84L72 32"/>')
+_SC['Publisher Tooling']=(
+ '<rect x="14" y="14" width="20" height="20" rx="3"/><rect x="14" y="48" width="20" height="20" rx="3"/><rect x="14" y="82" width="20" height="20" rx="3"/>'
+ '<path d="M46 24h46M46 58h38M46 92h42"/><circle cx="130" cy="58" r="14"/><circle cx="130" cy="58" r="5"/>'
+ '<path d="M130 34v8M130 74v8M106 58h8M146 58h8M113 41l6 6M141 69l6 6M147 41l-6 6M119 69l-6 6"/>',
+ '<path d="M18 24l5 5 9-10M18 58l5 5 9-10M18 92l5 5 9-10"/>')
+
+_PG={
+ 'fit':('0 0 300 110',
+  '<rect x="8" y="10" width="50" height="90" rx="4"/><path d="M18 30h30M18 44h30M18 58h22M18 72h28"/>'
+  '<circle cx="126" cy="55" r="30"/><circle cx="174" cy="55" r="30"/>'
+  '<rect x="242" y="10" width="50" height="90" rx="4"/><path d="M252 30h30M252 44h24M252 58h30M252 72h18"/>',
+  '<path d="M138 55l9 9 17-19"/><path d="M66 55h20M86 55l-5-4M86 55l-5 4M234 55h-20M214 55l5-4M214 55l5 4"/>'),
+ 'ask':('0 0 300 110',
+  '<path d="M12 10h96a5 5 0 0 1 5 5v44a5 5 0 0 1-5 5H44l-14 14V64H12a5 5 0 0 1-5-5V15a5 5 0 0 1 5-5z"/>'
+  '<path d="M178 40h104a5 5 0 0 1 5 5v44a5 5 0 0 1-5 5h-18v14l-14-14h-72a5 5 0 0 1-5-5V45a5 5 0 0 1 5-5z"/>'
+  '<path d="M196 60h70M196 76h46"/><circle cx="60" cy="43" r="1.8" class="dotf"/>',
+  '<path d="M48 22a12 12 0 1 1 14 12c-4 2-6 4-6 8"/><path d="M280 14v12M274 20h12M142 84v8M138 88h8"/>'),
+ 'about':('0 0 380 80',
+  '<g transform="translate(2,8) scale(1)"><ellipse cx="26" cy="22" rx="14" ry="18" transform="rotate(-35 26 22)"/><path d="M34 38l22 22"/></g>'
+  '<g transform="translate(82,8)"><g transform="rotate(35 32 32)"><rect x="22" y="2" width="16" height="58" rx="8"/><path d="M22 20h16M22 42h16"/></g></g>'
+  '<g transform="translate(162,8)"><path d="M10 30h44v20a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z"/><path d="M6 30h52M2 38h8M54 38h8"/><path d="M22 22c-3-4 3-6 0-10M34 22c-3-4 3-6 0-10M46 22c-3-4 3-6 0-10"/></g>'
+  '<g transform="translate(242,8)"><path d="M4 30L58 6 44 56 30 38z"/><path d="M30 38l28-32"/></g>'
+  '<g transform="translate(314,8)"><path d="M4 34h52c0 14-11 22-26 22S4 48 4 34z"/><path d="M18 8l12 22M26 6l14 24"/></g>',
+  '<circle cx="50" cy="14" r="6"/>'),
+}
+def page(name):
+    vb,base,acc=_PG[name]
+    return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></svg></div>'
+PAGECSS=('.pgart{margin:0 0 var(--s8)}.pgart svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;color:var(--ink)}.pgart.pg-about svg{max-width:400px}'
+'.pgart .sc,.pgart .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pgart .sa{stroke:var(--hand)}'
+'.pgart .sc .dotf{fill:currentColor;stroke:none}'
+'.panel.on .pgart .sa path{stroke-dasharray:200;animation:pgdraw 1.2s .15s ease-out backwards}@keyframes pgdraw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}'
+'@media (prefers-reduced-motion:reduce){.pgart .sa path{animation:none!important}}'
+'#work .item summary{grid-template-columns:1fr auto;column-gap:var(--s4)}#work .item .d{grid-column:1;padding-right:0}'
+'#work .item .thumb{grid-column:2;grid-row:2;margin-right:34px;align-self:center;width:210px}'
+'@media (max-width:620px){#work .item .thumb{grid-column:1 / -1;grid-row:2;width:calc(100% + 32px);margin:6px 0 4px;height:124px;overflow:hidden}#work .item .thumb svg{height:100%;width:auto;margin:0 auto}#work .item .d{grid-row:3;grid-column:1 / -1}}')

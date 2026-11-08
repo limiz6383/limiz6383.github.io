@@ -99,3 +99,18 @@ JS='''
   });
 })();
 '''
+
+def thumb(title):
+    nodes=FLOWS[title]; pos=[(10,4),(100,4),(100,72),(10,72)]
+    g=['<svg viewBox="0 0 160 126" role="presentation" focusable="false">']
+    for i,(ic,*_) in enumerate(nodes):
+        x,y=pos[i]
+        g.append(f'<g class="tn" style="--i:{i}" transform="translate({x},{y}) scale(.78)" filter="url(#rough)">{ICONS[ic]}</g>')
+    g.append('<g class="ta"><path d="M68 29h22M90 29l-5-4M90 29l-5 4"/><path d="M125 57v11M125 68l-4-5M125 68l4-5"/><path d="M92 97H70M70 97l5-4M70 97l5 4"/></g>')
+    g.append('</svg>')
+    return ''.join(g)
+THUMBCSS=('.thumb.fl{padding:8px 10px}.thumb.fl svg{color:var(--ink)}.thumb .tn{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}'
+'.thumb .tn .fill{fill:#1c1b18}.thumb .tn .dotf{fill:currentColor;stroke:none}.thumb .ta path{fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'
+'.item summary:hover .thumb .tn,.item summary:focus-visible .thumb .tn{animation:lit 2.4s linear infinite;animation-delay:calc(var(--i)*.6s)}'
+'@keyframes lit{0%,24%{stroke:var(--hand)}25%,100%{stroke:currentColor}}'
+'@media (prefers-reduced-motion:reduce){.thumb .tn{animation:none!important}}')

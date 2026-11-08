@@ -45,22 +45,22 @@ def _arrow(x1,y1,x2,y2,bend,i):
 def build(title):
     nodes=FLOWS[title]
     # horizontal
-    H=['<svg class="hz" viewBox="0 0 760 214" role="presentation" focusable="false">']
+    H=['<svg class="hz" viewBox="0 0 740 164" role="presentation" focusable="false">']
     for i,(ic,l1,l2,cap) in enumerate(nodes):
-        cx=95+i*190
-        H.append(f'<g class="nd" data-i="{i}" data-cap="{cap}" tabindex="0" role="button" aria-label="{l1} {l2}. {cap}" style="--i:{i}"><rect class="hit" x="{cx-92}" y="0" width="184" height="214" fill="transparent" stroke="none"/><g class="ic" transform="translate({cx-40},14) scale(1.25)" filter="url(#rough)">{ICONS[ic]}</g><text x="{cx}" y="150" text-anchor="middle">{l1}</text><text x="{cx}" y="171" text-anchor="middle">{l2}</text></g>')
-        if i<len(nodes)-1: H.append(_arrow(cx+54,58,cx+190-54,58,18,i))
+        x=i*190
+        H.append(f'<g class="nd" data-i="{i}" data-cap="{cap}" tabindex="0" role="button" aria-label="{l1} {l2}. {cap}" style="--i:{i}"><rect class="hit" x="{x-8}" y="0" width="186" height="164" fill="transparent" stroke="none"/><g class="ic" transform="translate({x-7.5},14) scale(1.25)" filter="url(#rough)">{ICONS[ic]}</g><text x="{x}" y="118">{l1}</text><text x="{x}" y="139">{l2}</text></g>')
+        if i<len(nodes)-1: H.append(_arrow(x+88,56,x+190-12,56,16,i))
     H.append('</svg>')
     # vertical
     V=['<svg class="vt" viewBox="0 0 320 456" role="presentation" focusable="false">']
     for i,(ic,l1,l2,cap) in enumerate(nodes):
         cy=56+i*114
-        V.append(f'<g class="nd" data-i="{i}" data-cap="{cap}" tabindex="0" role="button" aria-label="{l1} {l2}. {cap}" style="--i:{i}"><rect class="hit" x="0" y="{cy-52}" width="320" height="104" fill="transparent" stroke="none"/><g class="ic" transform="translate(18,{cy-32}) scale(1)" filter="url(#rough)">{ICONS[ic]}</g><text x="102" y="{cy-3}">{l1}</text><text x="102" y="{cy+19}">{l2}</text></g>')
-        if i<len(nodes)-1: V.append(_arrow(50,cy+40,50,cy+114-40,-14,i))
+        V.append(f'<g class="nd" data-i="{i}" data-cap="{cap}" tabindex="0" role="button" aria-label="{l1} {l2}. {cap}" style="--i:{i}"><rect class="hit" x="0" y="{cy-52}" width="320" height="104" fill="transparent" stroke="none"/><g class="ic" transform="translate(-5,{cy-32})" filter="url(#rough)">{ICONS[ic]}</g><text x="76" y="{cy-3}">{l1}</text><text x="76" y="{cy+19}">{l2}</text></g>')
+        if i<len(nodes)-1: V.append(_arrow(27,cy+40,27,cy+114-40,-12,i))
     V.append('</svg>')
     return ('<figure class="how" data-how><div class="how-art">'+''.join(H)+''.join(V)+'</div>'
             f'<figcaption class="cap" aria-live="polite">{nodes[0][3]}</figcaption></figure>')
-FILTER='<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter></svg>'
+FILTER='<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="1" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></svg>'
 CSS=('.how{margin:var(--s2) 0 var(--s8)}.how-art svg{display:block;width:100%;height:auto;overflow:visible;color:var(--ink)}.how-art .vt{display:none;max-width:340px}'
 '.how .nd{cursor:pointer;outline:none}.how .nd .ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s,transform .35s cubic-bezier(.2,.8,.2,1)}'
 '.how .nd .fill{fill:#1c1b18}.how .nd .dotf{fill:currentColor;stroke:none}'
@@ -120,12 +120,19 @@ _SC={
  '<circle cx="134" cy="30" r="12"/><path d="M128 24l12 12M128 36l12-12" opacity="0"/><circle cx="134" cy="30" r="5"/>',
  '<path class="trail" d="M20 62L52 46l24 8 38-30"/><path class="trail" d="M102 22l13 1-1 13"/>'),
 }
+import json,os
+_VB=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'vb.json'))) if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),'vb.json')) else {}
+def _off(key,W,H,center=True,pad=2):
+    b=_VB.get(key)
+    if not b: return 0,0
+    x,y,w,h=b
+    return ((W-w)/2-x if center else pad-x), ((H-h)/2-y if center else pad-y)
 def thumb(title):
-    base,acc=_SC[title]
-    return f'<svg viewBox="0 0 160 116" role="presentation" focusable="false"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></svg>'
+    base,acc=_SC[title]; dx,dy=_off('t:'+title,160,116)
+    return f'<svg viewBox="0 0 160 116" role="presentation" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg>'
 THUMBCSS=('.thumb{border:0!important;background:transparent!important}.thumb svg{color:var(--ink)}.thumb .sc,.thumb .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
 '.thumb .sc .fill{fill:#1c1b18}.thumb .sc .dotf{fill:currentColor;stroke:none}.thumb .sc .solid{fill:currentColor}'
-'.thumb .sa{stroke:var(--hand)}.thumb .sa .trail{stroke-dasharray:none}.thumb .sa .acc{fill:none}'
+'.thumb .sc .tooth{stroke-width:5}.thumb .sa{stroke:var(--hand)}.thumb .sa .trail{stroke-dasharray:none}.thumb .sa .acc{fill:none}'
 '.item summary:hover .thumb .sa .trail,.item summary:focus-visible .thumb .sa .trail{animation:drawT 1.1s ease-out}'
 '@keyframes drawT{from{stroke-dasharray:200;stroke-dashoffset:200}to{stroke-dasharray:200;stroke-dashoffset:0}}'
 '@media (prefers-reduced-motion:reduce){.thumb .sa *{animation:none!important}}')
@@ -141,7 +148,7 @@ _SC['Ad Quality']=(
 _SC['Publisher Tooling']=(
  '<rect x="14" y="14" width="20" height="20" rx="3"/><rect x="14" y="48" width="20" height="20" rx="3"/><rect x="14" y="82" width="20" height="20" rx="3"/>'
  '<path d="M46 24h46M46 58h38M46 92h42"/><circle cx="130" cy="58" r="14"/><circle cx="130" cy="58" r="5"/>'
- '<path d="M130 34v8M130 74v8M106 58h8M146 58h8M113 41l6 6M141 69l6 6M147 41l-6 6M119 69l-6 6"/>',
+ '<path class="tooth" d="M130 36v6M130 74v6M108 58h6M146 58h6M114 42l4 4M142 70l-4-4M146 42l-4 4M114 74l4-4"/>',
  '<path d="M18 24l5 5 9-10M18 58l5 5 9-10M18 92l5 5 9-10"/>')
 
 _PG={
@@ -156,16 +163,20 @@ _PG={
   '<path d="M196 60h70M196 76h46"/><circle cx="60" cy="43" r="1.8" class="dotf"/>',
   '<path d="M48 22a12 12 0 1 1 14 12c-4 2-6 4-6 8"/><path d="M280 14v12M274 20h12M142 84v8M138 88h8"/>'),
  'about':('0 0 380 80',
-  '<g transform="translate(2,8) scale(1)"><ellipse cx="26" cy="22" rx="14" ry="18" transform="rotate(-35 26 22)"/><path d="M34 38l22 22"/></g>'
-  '<g transform="translate(82,8)"><g transform="rotate(35 32 32)"><rect x="22" y="2" width="16" height="58" rx="8"/><path d="M22 20h16M22 42h16"/></g></g>'
-  '<g transform="translate(162,8)"><path d="M10 30h44v20a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z"/><path d="M6 30h52M2 38h8M54 38h8"/><path d="M22 22c-3-4 3-6 0-10M34 22c-3-4 3-6 0-10M46 22c-3-4 3-6 0-10"/></g>'
-  '<g transform="translate(242,8)"><path d="M4 30L58 6 44 56 30 38z"/><path d="M30 38l28-32"/></g>'
-  '<g transform="translate(314,8)"><path d="M4 34h52c0 14-11 22-26 22S4 48 4 34z"/><path d="M18 8l12 22M26 6l14 24"/></g>',
-  '<circle cx="50" cy="14" r="6"/>'),
+  '<g transform="translate(0,6)"><g transform="rotate(-38 32 32)"><ellipse cx="32" cy="20" rx="14" ry="18"/><path d="M32 2v36M18 20h28"/><path d="M27 38l-2 9h14l-2-9"/><rect x="28" y="47" width="8" height="14" rx="3"/></g></g>'
+  '<g transform="translate(86,6)"><path d="M4 58L32 8l28 50z"/><path d="M20 30l6 6 6-6 6 6 6-6"/></g>'
+  '<g transform="translate(166,8)"><path d="M10 30h44v20a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z"/><path d="M6 30h52M2 38h8M54 38h8"/><path d="M22 22c-3-4 3-6 0-10M34 22c-3-4 3-6 0-10M46 22c-3-4 3-6 0-10"/></g>'
+  '<g transform="translate(246,8)"><path d="M4 30L58 6 44 56 30 38z"/><path d="M30 38l28-32"/></g>'
+  '<g transform="translate(318,8)"><path d="M4 34h52c0 14-11 22-26 22S4 48 4 34z"/><path d="M14 34c4-6 8-6 12 0s8 6 12 0M18 8l12 22M26 6l14 24"/></g>',
+  '<circle cx="46" cy="6" r="6"/><path d="M42 3c3 1 5 4 5 8" stroke-width="1.6"/>'),
 }
 def page(name):
-    vb,base,acc=_PG[name]
-    return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></svg></div>'
+    vb,base,acc=_PG[name]; W,H=[float(v) for v in vb.split()[2:]]
+    b=_VB.get('p:'+name)
+    if b:
+        x,y,w,h=b; pad=2.5; vb=f'0 0 {w+2*pad:.1f} {h+2*pad:.1f}'; dx,dy=pad-x,pad-y
+    else: dx=dy=0
+    return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg></div>'
 PAGECSS=('.pgart{margin:0 0 var(--s8)}.pgart svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;color:var(--ink)}.pgart.pg-about svg{max-width:400px}'
 '.pgart .sc,.pgart .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pgart .sa{stroke:var(--hand)}'
 '.pgart .sc .dotf{fill:currentColor;stroke:none}'

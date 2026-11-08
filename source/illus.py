@@ -177,7 +177,7 @@ def page(name):
         x,y,w,h=b; pad=2.5; vb=f'0 0 {w+2*pad:.1f} {h+2*pad:.1f}'; dx,dy=pad-x,pad-y
     else: dx=dy=0
     return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg></div>'
-PAGECSS=('.pgart{margin:0 0 var(--s8)}.pgart svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;color:var(--ink)}.pgart.pg-about svg{max-width:400px}'
+PAGECSS=('.pgart.pg-fit,.pgart.pg-ask{display:flex;justify-content:center}.pgart{margin:0 0 var(--s8)}.pgart svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;color:var(--ink)}.pgart.pg-about svg{max-width:400px}'
 '.pgart .sc,.pgart .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pgart .sa{stroke:var(--hand)}'
 '.pgart .sc .dotf{fill:currentColor;stroke:none}'
 '.panel.on .pgart .sa path{stroke-dasharray:200;animation:pgdraw 1.2s .15s ease-out backwards}@keyframes pgdraw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}'

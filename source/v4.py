@@ -129,11 +129,11 @@ html[data-theme="dark"] .ic-moon{display:none}html[data-theme="light"] .ic-sun{d
 .top{padding-top:clamp(24px,5vh,56px)!important}
 @media (max-width:560px){.util{flex-direction:column;align-items:flex-start;gap:4px}.rbtn{margin:0 4px}}
 /* folder tabs */
-.tabs{display:flex;gap:6px;margin:var(--s12) 0 0!important;padding:0 var(--s1)!important;overflow-x:auto;scrollbar-width:none;align-items:flex-end;border:0!important}
+.tabs{display:flex;gap:6px;margin:calc(var(--s12) - 6px) 0 0!important;padding:6px var(--s1) 0!important;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;align-items:flex-end;border:0!important}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{all:unset;box-sizing:border-box;cursor:pointer;white-space:nowrap;padding:12px 20px 11px!important;font:500 15px var(--body)!important;color:var(--muted)!important;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:transparent;position:relative;margin-bottom:0;transition:color .2s,background-color .2s}
 .tabs button:hover{color:var(--ink)!important;background:color-mix(in srgb,var(--wash) 60%,transparent)}
-.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
 .tabs button[aria-selected="true"]{color:var(--ink)!important;background:var(--wash);margin-bottom:-1px;padding-bottom:12px!important;z-index:2;border-color:var(--line);border-bottom:1px solid var(--wash)}
 .tabs button[aria-selected="true"]::after{display:none!important}
 .panel{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:var(--s8) var(--s8) var(--s6);position:relative;z-index:1}

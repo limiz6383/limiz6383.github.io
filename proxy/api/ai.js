@@ -10,13 +10,14 @@ const MAX_TOKENS = 1200;       // cap on reply length
 const PER_IP_PER_HOUR = Number(process.env.PER_IP_PER_HOUR || 10);    // best-effort limit (per warm instance)
 const DAILY_CAP = Number(process.env.DAILY_CAP || 100); // best-effort total calls per day per instance
 const MAX_JD = 6000, MIN_JD = 150;
+const API_KEY = () => process.env.ANTHROPIC_API_KEY || process.env.anthropic_key || process.env.ANTHROPIC_KEY || '';
 const hits = new Map();
 const seen = new Map(); // recent job-check verdicts, so a repeated paste costs nothing
 
 async function claude(model, content, max) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+    headers: { 'content-type': 'application/json', 'x-api-key': API_KEY(), 'anthropic-version': '2023-06-01' },
     body: JSON.stringify({ model, max_tokens: max, messages: [{ role: 'user', content }] }),
   });
   const j = await r.json();
@@ -51,7 +52,7 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
   // Health check: open the URL in a browser to confirm it deployed and the key is set (never reveals the key).
-  if (req.method === 'GET') return res.status(200).json({ ok: true, keySet: !!process.env.ANTHROPIC_API_KEY, allowed: ALLOWED });
+  if (req.method === 'GET') return res.status(200).json({ ok: true, keySet: !!API_KEY(), allowed: ALLOWED });
   if (req.method === 'OPTIONS') return res.status(ok ? 204 : 403).end();
   if (!ok) return res.status(403).json({ error: 'forbidden_origin' });
   if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
@@ -84,7 +85,7 @@ module.exports = async (req, res) => {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'x-api-key': API_KEY(),
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({ model, max_tokens: MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),

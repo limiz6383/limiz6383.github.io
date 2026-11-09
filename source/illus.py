@@ -186,7 +186,7 @@ PAGECSS=('.pgart.pg-fit,.pgart.pg-ask{display:flex;justify-content:center}.pgart
 '.panel#work .item .t,.panel#builds .item .t{grid-column:1;grid-row:1}'
 '.panel#work .item .s,.panel#builds .item .s{grid-column:1;grid-row:2;font-size:13px;color:var(--muted)}'
 '.panel#work .item .d,.panel#builds .item .d{grid-column:1;grid-row:3;font:400 14.5px/1.55 var(--body);color:#CFCBBE;letter-spacing:0;padding:4px 0 0}'
-'.panel#work .item .d .num{color:var(--accent)}'
+'.panel#work .item .d .num{color:var(--accent)}.panel#work .body p:not(.statement),.panel#work .body li{font-size:14.5px;line-height:1.62}.panel#work .body .after{color:#CFCBBE}'
 '.panel#work .item summary{padding-right:var(--s8)}.panel#work .item .plus{display:block;right:2px;top:calc(var(--s4) + 6px);width:14px;height:14px}'
 '.panel#work .item .plus::before,.panel#work .item .plus::after{content:"";position:absolute;left:0;right:0;top:6px;height:1.5px;background:var(--muted);transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .2s}'
 '.panel#work .item .plus::after{transform:rotate(90deg)}.panel#work .item[open] .plus::after{transform:rotate(0)}'

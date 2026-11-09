@@ -1,6 +1,6 @@
 # v4: theme, header, folder tabs, Fig rows + drawer, ask/fit rework
 HEAD_SCRIPT = ("<script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}"
-               "if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';"
+               "if(t!=='light'&&t!=='dark')t='light';"
                "document.documentElement.setAttribute('data-theme',t)})()</script>")
 
 def _svg(inner, cls=''):
@@ -227,7 +227,7 @@ JS = r'''
 /* theme toggle */
 (function(){const b=document.getElementById('theme');if(!b)return;
   function apply(t){document.documentElement.setAttribute('data-theme',t);b.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode')}
-  apply(document.documentElement.getAttribute('data-theme')||'dark');
+  apply(document.documentElement.getAttribute('data-theme')||'light');
   b.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('theme',t)}catch(e){}});
 })();
 /* detail drawer */

@@ -50,7 +50,7 @@ js=js.replace("}catch(e){ out=null; }\n  }\n  const wait","}catch(e){ if(e&&e.co
 js=js.replace('jbtn.onclick = async ()=>{',v4.FIT_GUARD+'jbtn.onclick = async ()=>{',1)
 js=js.replace("jbtn.disabled = true; jbtn.classList.add('busy'); jbtn.textContent = 'Reading...';",v4.FIT_CHECK+"jbtn.disabled = true; jbtn.classList.add('busy'); jbtn.textContent = 'Reading...';",1)
 js=js.replace('  if(sample){\n    try{\n      const d = await sample.json(','  if(sample&&useAI){\n    try{\n      const d = await sample.json(',1)
-js=js.replace("let sample = null;","""const AI_PROXY = 'https://limiz6383githubio-proxy-o61y4ysza-mizuho1.vercel.app/api/ai';
+js=js.replace("let sample = null;","""const AI_PROXY = 'https://limiz6383githubio-proxy-dpkz7rpqv-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
     const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\\n\\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd,q:opts&&opts.q})});

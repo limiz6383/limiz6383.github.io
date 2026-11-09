@@ -212,17 +212,11 @@ body.lock{overflow:hidden}
 .answer.typing>span:last-child::after{content:"";display:inline-block;width:7px;height:1.05em;margin-left:2px;vertical-align:-2px;background:var(--hand);animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 .note{font-size:14px!important;color:var(--muted)!important}
-/* fit + ask: illustration beside the content on wide screens */
-@media (min-width:900px){#fit.panel.on,#ask.panel.on{display:grid;grid-template-columns:minmax(0,1fr) 230px;column-gap:var(--s8);align-items:start}
-#fit .box,#ask .box{grid-column:1;grid-row:1;min-width:0}
-#fit .pgart,#ask .pgart{grid-column:2;grid-row:1;margin:var(--s2) 0 0;display:block}
-#fit .pgart svg,#ask .pgart svg{max-width:230px}}
-@media (max-width:899px){#fit .pgart svg,#ask .pgart svg{max-width:220px}.pgart{margin-bottom:var(--s6)}}
 /* fit */
 #jdres{container-type:inline-size}
-.mhead.nj{display:block;width:100%;max-width:none;margin:0 0 var(--s3);font-size:clamp(22px,4.6cqw,52px);line-height:1.12;text-wrap:balance}
+.mhead.nj{display:block;width:100%;max-width:none;margin:0 0 var(--s3);font-size:clamp(22px,5.2cqw,56px);line-height:1.12;text-wrap:balance}
 .mhead.nj .ten{font-size:1em}
-.njsub{margin:0;font-size:17px;line-height:1.6;color:var(--soft);max-width:60ch}
+.njsub{margin:0;font-size:17px;line-height:1.6;color:var(--soft);max-width:none}
 .smirk{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.25em;color:var(--hand);fill:none;stroke:var(--hand);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 #jdtext{border-radius:12px!important;background:var(--paper)!important;font-size:16px}
 .panel .box label{font-size:14.5px}

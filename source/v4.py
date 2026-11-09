@@ -188,7 +188,8 @@ body.lock{overflow:hidden}
 .drawer .body .cols3>div{margin:0 0 var(--s6)!important}
 .drawer .body h4{font:500 11.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:var(--s6) 0 var(--s2)!important}
 .drawer .body img,.drawer .body figure img{max-width:100%;height:auto}
-.drawer .how-art .hz{display:none!important}.drawer .how-art .vt{display:block!important;max-width:380px}
+.drawer .how-art .hz{display:block;width:100%;height:auto}
+@media (max-width:620px){.drawer .how-art .hz{display:none}.drawer .how-art .vt{display:block;max-width:340px}}
 .drawer.on .how .nd{animation:pop .55s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*.22s)}
 .drawer.on .how .arrow path:first-child{stroke-dasharray:1;stroke-dashoffset:0;animation:drawA .5s ease-out backwards;animation-delay:calc(var(--i)*.22s + .18s)}
 .drawer.on .how .arrow .head{animation:fadeA .3s ease-out backwards;animation-delay:calc(var(--i)*.22s + .55s)}

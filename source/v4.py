@@ -167,8 +167,9 @@ html[data-theme="dark"] .ic-moon{display:none}html[data-theme="light"] .ic-sun{d
 body.lock{overflow:hidden}
 .scrim{position:fixed;inset:0;background:color-mix(in srgb,#000 58%,transparent);opacity:0;transition:opacity .3s;z-index:55}
 .scrim.on{opacity:1}
-.drawer{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(640px,100vw);background:var(--paper);border-left:1px solid var(--line);z-index:60;transform:translateX(104%);transition:transform .34s cubic-bezier(.2,.8,.2,1);overflow-y:auto;overscroll-behavior:contain;outline:none}
-.drawer.on{transform:none}
+.drawer{position:fixed;left:50%;top:50%;width:min(780px,calc(100vw - 32px));max-height:min(88vh,900px);max-height:min(88dvh,900px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px color-mix(in srgb,#000 45%,transparent);z-index:60;transform:translate(-50%,-47%) scale(.97);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s;overflow-y:auto;overscroll-behavior:contain;outline:none}
+.drawer.on{transform:translate(-50%,-50%);opacity:1}
+.dhead{border-radius:18px 18px 0 0}
 .dhead{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:14px var(--s8);background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .dfig{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--muted)}
 .dclose{all:unset;box-sizing:border-box;cursor:pointer;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--line);color:var(--ink);transition:background-color .2s}
@@ -192,7 +193,7 @@ body.lock{overflow:hidden}
 .drawer.on .how .arrow path:first-child{stroke-dasharray:1;stroke-dashoffset:0;animation:drawA .5s ease-out backwards;animation-delay:calc(var(--i)*.22s + .18s)}
 .drawer.on .how .arrow .head{animation:fadeA .3s ease-out backwards;animation-delay:calc(var(--i)*.22s + .55s)}
 .drawer .tags{margin-top:var(--s6)}
-@media (max-width:700px){.dhead{padding:12px var(--s4)}.dinner{padding:var(--s6) var(--s4) var(--s16)}}
+@media (max-width:700px){.drawer{width:100vw;height:100dvh;max-height:none;border:0;border-radius:0;top:0;left:0;transform:translateY(16px);}.drawer.on{transform:none}.dhead{border-radius:0;padding:12px var(--s4)}.dinner{padding:var(--s6) var(--s4) var(--s16)}}
 @media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}.drawer.on .how *{animation:none!important}}
 /* ask me */
 .askhead{display:flex;align-items:center;gap:10px;margin:0 0 var(--s3);font:500 19px var(--body);color:var(--ink)}

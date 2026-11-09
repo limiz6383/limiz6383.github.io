@@ -190,7 +190,7 @@ p{{margin:0 0 1em;text-wrap:pretty}}
     <h1 class="is">mizuho is <span class="hand" id="hand" aria-live="off"><span>building</span></span></h1>
     <div class="meWrap">{art}</div>
     </div>
-    <p class="bio">I'm a product manager at <b>Xbox Media Solutions</b> in <b>San Francisco</b>, working on ad products and the tools behind them. I build 0-to-1 AI products, and on the side I build my own solutions to my own pain points. When I'm not working, I'm usually playing tennis, snowboarding, cooking, traveling, or trying lots of yummy food.</p>
+    <p class="bio">I'm a product manager at <b>Xbox Media Solutions</b> in <b>San Francisco</b>, working on ad products and the tools behind them. I build 0-to-1 AI products, and on the side I build solutions to my own pain points. When I'm not working, I'm usually playing tennis, snowboarding, cooking, traveling, or trying lots of yummy food.</p>
     
   </div>
 

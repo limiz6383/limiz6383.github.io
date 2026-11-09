@@ -60,12 +60,12 @@ def build(title):
     V.append('</svg>')
     return ('<figure class="how" data-how><div class="how-art">'+''.join(H)+''.join(V)+'</div>'
             f'<figcaption class="cap" aria-live="polite">{nodes[0][3]}</figcaption></figure>')
-FILTER='<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="1" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></svg>'
+FILTER='<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="1" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter><filter id="rough2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="1" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.8"/></filter></svg>'
 CSS=('.how{margin:var(--s2) 0 var(--s8)}.how-art svg{display:block;width:100%;height:auto;overflow:visible;color:var(--ink)}.how-art .vt{display:none;max-width:340px}'
-'.how .nd{cursor:pointer;outline:none}.how .nd .ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s,transform .35s cubic-bezier(.2,.8,.2,1)}'
-'.how .nd .fill{fill:#1c1b18}.how .nd .dotf{fill:currentColor;stroke:none}'
+'.how .nd{cursor:pointer}.how .nd:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}.how .nd .ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s,transform .35s cubic-bezier(.2,.8,.2,1)}'
+'.how .nd .fill{fill:var(--ifill)}.how .nd .dotf{fill:currentColor;stroke:none}'
 '.how .nd text{font:500 14.5px var(--body);fill:var(--ink);transition:fill .25s}.how .nd text:first-of-type{fill:var(--muted)}'
-'.how .nd.on .ic,.how .nd:focus-visible .ic{stroke:var(--hand)}.how .nd.on text,.how .nd:focus-visible text{fill:var(--hand)}'
+'.how .nd.on .ic,.how .nd:focus-visible .ic{stroke:var(--hand)}.how .nd.on text,.how .nd:focus-visible text{fill:var(--handtx)}'
 '.how .nd:hover .ic{stroke:var(--hand)}.how .nd:hover text{fill:var(--hand)}'
 '.how .arrow path{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}'
 '.how .cap{margin-top:var(--s4);min-height:3.2em;max-width:60ch;font:500 18px/1.35 var(--display);color:var(--ink)}'
@@ -129,9 +129,9 @@ def _off(key,W,H,center=True,pad=2):
     return ((W-w)/2-x if center else pad-x), ((H-h)/2-y if center else pad-y)
 def thumb(title):
     base,acc=_SC[title]; dx,dy=_off('t:'+title,160,116)
-    return f'<svg viewBox="0 0 160 116" role="presentation" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg>'
-THUMBCSS=('.thumb{border:0!important;background:transparent!important}.thumb svg{color:var(--ink)}.thumb .sc,.thumb .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
-'.thumb .sc .fill{fill:#1c1b18}.thumb .sc .dotf{fill:currentColor;stroke:none}.thumb .sc .solid{fill:currentColor}'
+    return f'<svg viewBox="0 0 160 116" role="presentation" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc pen" filter="url(#rough2)" transform="translate(.9,.7) rotate(-.7 80 58)">{base}</g><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg>'
+THUMBCSS=('.thumb{border:0!important;background:transparent!important}.thumb svg{color:var(--ink)}.thumb .sc,.thumb .sa{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'
+'.thumb .sc.pen,.pgart .sc.pen{stroke-width:1;opacity:.5}.thumb .sc.pen .fill,.thumb .sc.pen .solid,.thumb .sc.pen .dotf,.pgart .sc.pen .dotf{fill:none}.thumb .sc .fill{fill:var(--ifill)}.thumb .sc .dotf{fill:currentColor;stroke:none}.thumb .sc .solid{fill:currentColor}'
 '.thumb .sc .tooth{stroke-width:5}.thumb .sa{stroke:var(--hand)}.thumb .sa .trail{stroke-dasharray:none}.thumb .sa .acc{fill:none}'
 '.item summary:hover .thumb .sa .trail,.item summary:focus-visible .thumb .sa .trail{animation:drawT 1.1s ease-out}'
 '@keyframes drawT{from{stroke-dasharray:200;stroke-dashoffset:200}to{stroke-dasharray:200;stroke-dashoffset:0}}'
@@ -176,17 +176,17 @@ def page(name):
     if b:
         x,y,w,h=b; pad=2.5; vb=f'0 0 {w+2*pad:.1f} {h+2*pad:.1f}'; dx,dy=pad-x,pad-y
     else: dx=dy=0
-    return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg></div>'
+    return f'<div class="pgart pg-{name}" aria-hidden="true"><svg viewBox="{vb}" focusable="false"><g transform="translate({dx:.1f},{dy:.1f})"><g class="sc pen" filter="url(#rough2)" transform="translate(.9,.7) rotate(-.5 {W/2:.0f} {H/2:.0f})">{base}</g><g class="sc" filter="url(#rough)">{base}</g><g class="sa" filter="url(#rough)">{acc}</g></g></svg></div>'
 PAGECSS=('.pgart.pg-fit,.pgart.pg-ask{display:flex;justify-content:center}.pgart{margin:0 0 var(--s8)}.pgart svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;color:var(--ink)}.pgart.pg-about svg{max-width:400px}'
-'.pgart .sc,.pgart .sa{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pgart .sa{stroke:var(--hand)}'
+'.pgart .sc,.pgart .sa{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.pgart .sa{stroke:var(--hand)}'
 '.pgart .sc .dotf{fill:currentColor;stroke:none}'
 '.panel.on .pgart .sa path{stroke-dasharray:200;animation:pgdraw 1.2s .15s ease-out backwards}@keyframes pgdraw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}'
 '@media (prefers-reduced-motion:reduce){.pgart .sa path{animation:none!important}}'
 '.panel#work .item summary,.panel#builds .item summary{grid-template-columns:1fr auto;grid-template-rows:min-content min-content 1fr;column-gap:var(--s4);row-gap:2px;align-items:start;align-content:start}'
 '.panel#work .item .t,.panel#builds .item .t{grid-column:1;grid-row:1}'
 '.panel#work .item .s,.panel#builds .item .s{grid-column:1;grid-row:2;font-size:13px;color:var(--muted)}'
-'.panel#work .item .d,.panel#builds .item .d{grid-column:1;grid-row:3;font:400 14.5px/1.55 var(--body);color:#CFCBBE;letter-spacing:0;padding:4px 0 0}'
-'.panel#work .item .d .num{color:var(--accent)}.panel#work .body p:not(.statement),.panel#work .body li{font-size:14.5px;line-height:1.62}.panel#work .body .after{color:#CFCBBE}'
+'.panel#work .item .d,.panel#builds .item .d{grid-column:1;grid-row:3;font:400 14.5px/1.55 var(--body);color:var(--soft);letter-spacing:0;padding:4px 0 0}'
+'.panel#work .item .d .num{color:var(--accent)}.panel#work .body p:not(.statement),.panel#work .body li{font-size:14.5px;line-height:1.62}.panel#work .body .after{color:var(--soft)}'
 '.panel#work .item summary{padding-right:var(--s8)}.panel#work .item .plus{display:block;right:2px;top:calc(var(--s4) + 6px);width:14px;height:14px}'
 '.panel#work .item .plus::before,.panel#work .item .plus::after{content:"";position:absolute;left:0;right:0;top:6px;height:1.5px;background:var(--muted);transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .2s}'
 '.panel#work .item .plus::after{transform:rotate(90deg)}.panel#work .item[open] .plus::after{transform:rotate(0)}'

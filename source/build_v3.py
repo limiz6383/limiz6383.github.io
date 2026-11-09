@@ -45,16 +45,19 @@ js=between('<script>','</script>',B.index('<footer>'))
 js=js.replace(between('/* ---------- hero blinds','/* ---------- facts'),'')
 js=js.replace('<script>','',1)
 js=js.replace(between('/* ---------- ask section ---------- */','/* ---------- job matcher ---------- */'),v4.ASK_JS)
+js=js.replace("{ cache:false, modelTier:'default' });\n      out={d,","{ cache:false, modelTier:'default', kind:'fit', jd:text.slice(0,6000) });\n      out={d,",1)
+js=js.replace("}catch(e){ out=null; }\n  }\n  const wait","}catch(e){ if(e&&e.code==='not_job'){ stop(); notJob(); jbtn.disabled=false; jbtn.classList.remove('busy'); jbtn.textContent='Check my fit'; return; } out=null; }\n  }\n  const wait",1)
 js=js.replace('jbtn.onclick = async ()=>{',v4.FIT_GUARD+'jbtn.onclick = async ()=>{',1)
 js=js.replace("jbtn.disabled = true; jbtn.classList.add('busy'); jbtn.textContent = 'Reading...';",v4.FIT_CHECK+"jbtn.disabled = true; jbtn.classList.add('busy'); jbtn.textContent = 'Reading...';",1)
 js=js.replace('  if(sample){\n    try{\n      const d = await sample.json(','  if(sample&&useAI){\n    try{\n      const d = await sample.json(',1)
 js=js.replace("let sample = null;","""const AI_PROXY = 'https://limiz6383githubio-proxy-nl1xkgr8m-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
-    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\\n\\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default'})});
+    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\\n\\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd})});
     if(r.status===429){const e=new Error('rate');e.code='rate_limited';throw e}
     if(!r.ok) throw new Error('proxy '+r.status);
-    return (await r.json()).text||'';
+    const j=await r.json(); if(j.notJob){const e=new Error('notjob');e.code='not_job';throw e}
+    return j.text||'';
   };
   const f = async (prompt,opts)=>{const text=await call(prompt,opts,false);return {text}};
   f.json = async (prompt,opts)=>{const t=(await call(prompt,opts,true)).replace(/^```(?:json)?\\s*|\\s*```$/g,'').trim();return JSON.parse(t)};

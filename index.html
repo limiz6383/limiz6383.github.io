@@ -462,10 +462,11 @@ function bestSaved(q){
 const AI_PROXY = 'https://limiz6383githubio-proxy-nl1xkgr8m-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
-    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\n\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default'})});
+    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\n\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd})});
     if(r.status===429){const e=new Error('rate');e.code='rate_limited';throw e}
     if(!r.ok) throw new Error('proxy '+r.status);
-    return (await r.json()).text||'';
+    const j=await r.json(); if(j.notJob){const e=new Error('notjob');e.code='not_job';throw e}
+    return j.text||'';
   };
   const f = async (prompt,opts)=>{const text=await call(prompt,opts,false);return {text}};
   f.json = async (prompt,opts)=>{const t=(await call(prompt,opts,true)).replace(/^```(?:json)?\s*|\s*```$/g,'').trim();return JSON.parse(t)};
@@ -573,9 +574,9 @@ jbtn.onclick = async ()=>{
     try{
       const d = await sample.json(
       `You are Mizuho's enthusiastic but truthful career advocate, reading a job description like LinkedIn's 'How you match': a checklist of the role's required and preferred qualifications against her profile. Use ONLY the candidate facts; never invent experience, tools, titles or numbers. Frame everything positively. Return JSON with keys: matches (4 to 6 objects, ordered by how important each is to the role, each {requirement: the qualification or skill as the job states it, in 2 to 6 words, evidence: one sentence citing a specific fact, project or number from the facts}), growth (0 to 2 objects for requirements she does not clearly meet, each {requirement, bridge: one warm, honest sentence naming the closest real evidence and how she would ramp fast; never claim the gap is filled}), pitch (one sentence, max 30 words, the strongest honest reason to interview Mizuho for this role). Even if the match is weak, find the genuine strengths and lead with them.\n\nCANDIDATE FACTS:\n${FACTS}\n\nJOB DESCRIPTION:\n${text.slice(0,6000)}`,
-      { cache:false, modelTier:'default' });
+      { cache:false, modelTier:'default', kind:'fit', jd:text.slice(0,6000) });
       out={d, note:'Analysis by Claude from the facts on this page.'};
-    }catch(e){ out=null; }
+    }catch(e){ if(e&&e.code==='not_job'){ stop(); notJob(); jbtn.disabled=false; jbtn.classList.remove('busy'); jbtn.textContent='Check my fit'; return; } out=null; }
   }
   const wait = 1500-(Date.now()-t0); if(wait>0) await sleep(wait);
   stop();

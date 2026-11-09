@@ -13,7 +13,7 @@ mid=between('/* work */','footer{')
 def articles(cls):
     return re.findall(r'<article class="%s">(.*?)</article>'%cls,B,flags=re.S)
 work=articles('row'); proj=articles('proj')
-WORK={'Agentic Creative Platform':('Jun 2026 – present','Carved out an MVP around the limits of image generation: designer time per mockup fell from ~30 hours to ~6, with ~10 minutes of system generation time.'),
+WORK={'Agentic Creative Platform':('Jun 2026 – present','~30 hours of designer work per mockup became ~10 minutes of system generation time.'),
 'Ad Quality':('Nov 2025 – May 2026','An ML model that blocks policy-violating ads before players see them, about 20,000 a month.'),
 'Publisher Tooling':('Jul 2025 – Nov 2025','Monthly resolution of tooling requests went from 10% to about 50%.')}
 BUILD={'Trip Planner':"An AI travel planner that builds a personalized trip around your travel style and any bookings you already have, then lets you chat to revise the itinerary at every step.",

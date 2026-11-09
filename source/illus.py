@@ -194,3 +194,4 @@ PAGECSS=('.pgart.pg-fit,.pgart.pg-ask{display:flex;justify-content:center}.pgart
 '.panel#work .item .thumb,.panel#builds .item .thumb{grid-column:2;grid-row:1 / 4;align-self:center;margin-right:34px;width:210px}'
 '@media (max-width:620px){.panel#work .item .thumb,.panel#builds .item .thumb{grid-column:1 / -1;grid-row:3;width:calc(100% + 32px);margin:8px -16px 4px;height:124px;overflow:hidden}'
 '.panel#work .item .thumb svg,.panel#builds .item .thumb svg{height:100%;width:auto;margin:0 auto}.panel#work .item .d,.panel#builds .item .d{grid-row:4;grid-column:1 / -1}}')
+

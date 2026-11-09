@@ -53,10 +53,11 @@ js=js.replace('  if(sample){\n    try{\n      const d = await sample.json(','  i
 js=js.replace("let sample = null;","""const AI_PROXY = 'https://limiz6383githubio-proxy-nl1xkgr8m-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
-    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\\n\\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd})});
+    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\\n\\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd,q:opts&&opts.q})});
     if(r.status===429){const e=new Error('rate');e.code='rate_limited';throw e}
     if(!r.ok) throw new Error('proxy '+r.status);
     const j=await r.json(); if(j.notJob){const e=new Error('notjob');e.code='not_job';throw e}
+    if(j.offTopic){const e=new Error('offtopic');e.code='off_topic';throw e}
     return j.text||'';
   };
   const f = async (prompt,opts)=>{const text=await call(prompt,opts,false);return {text}};

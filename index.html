@@ -462,10 +462,11 @@ function bestSaved(q){
 const AI_PROXY = 'https://limiz6383githubio-proxy-nl1xkgr8m-mizuho1.vercel.app/api/ai';
 function proxySample(){
   const call = async (prompt,opts,json)=>{
-    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\n\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd})});
+    const r = await fetch(AI_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:json?prompt+'\n\nRespond with ONLY valid JSON, no markdown fences.':prompt,tier:(opts&&opts.modelTier)==='quick'?'quick':'default',kind:opts&&opts.kind,jd:opts&&opts.jd,q:opts&&opts.q})});
     if(r.status===429){const e=new Error('rate');e.code='rate_limited';throw e}
     if(!r.ok) throw new Error('proxy '+r.status);
     const j=await r.json(); if(j.notJob){const e=new Error('notjob');e.code='not_job';throw e}
+    if(j.offTopic){const e=new Error('offtopic');e.code='off_topic';throw e}
     return j.text||'';
   };
   const f = async (prompt,opts)=>{const text=await call(prompt,opts,false);return {text}};
@@ -492,9 +493,10 @@ document.getElementById('askform').addEventListener('submit', async ev=>{
   try {
     const r = await sample(
       `You answer questions from recruiters about Mizuho Li, speaking as Mizuho in first person. Use ONLY the facts below. If the question is not about Mizuho's work, experience, skills or projects, or the facts do not cover it, say you do not have that on this page and suggest emailing mizuholi.ml@gmail.com. Never invent employers, metrics, dates, or skills. Keep answers under 90 words, plain text, no markdown.\n\nFACTS:\n${FACTS}\n\nQUESTION: ${q}`,
-      { cache:false, modelTier:'quick' });
+      { cache:false, modelTier:'quick', kind:'ask', q });
     show(q, r.text, true);
   } catch(e){
+    if(e && e.code==='off_topic'){ show(q, 'That one is outside what I can answer here. I am happy to talk about my work, projects, how I think about product, or what I am looking for. Try a suggested question, or email me at mizuholi.ml@gmail.com.', true); btn.disabled=false; return; }
     show(q, e && e.code==='rate_limited' ? 'Too many questions in a short time. Try again in a minute, or pick a suggested question.' : 'I could not get an answer right now. Pick a suggested question, or email mizuholi.ml@gmail.com.');
   }
   btn.disabled = false; inp.value='';

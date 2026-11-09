@@ -86,9 +86,10 @@ document.getElementById('askform').addEventListener('submit', async ev=>{
   try {
     const r = await sample(
       `You answer questions from recruiters about Mizuho Li, speaking as Mizuho in first person. Use ONLY the facts below. If the question is not about Mizuho's work, experience, skills or projects, or the facts do not cover it, say you do not have that on this page and suggest emailing mizuholi.ml@gmail.com. Never invent employers, metrics, dates, or skills. Keep answers under 90 words, plain text, no markdown.\n\nFACTS:\n${FACTS}\n\nQUESTION: ${q}`,
-      { cache:false, modelTier:'quick' });
+      { cache:false, modelTier:'quick', kind:'ask', q });
     show(q, r.text, true);
   } catch(e){
+    if(e && e.code==='off_topic'){ show(q, 'That one is outside what I can answer here. I am happy to talk about my work, projects, how I think about product, or what I am looking for. Try a suggested question, or email me at mizuholi.ml@gmail.com.', true); btn.disabled=false; return; }
     show(q, e && e.code==='rate_limited' ? 'Too many questions in a short time. Try again in a minute, or pick a suggested question.' : 'I could not get an answer right now. Pick a suggested question, or email mizuholi.ml@gmail.com.');
   }
   btn.disabled = false; inp.value='';

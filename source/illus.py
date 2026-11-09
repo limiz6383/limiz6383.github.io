@@ -195,3 +195,57 @@ PAGECSS=('.pgart.pg-fit,.pgart.pg-ask{display:flex;justify-content:center}.pgart
 '@media (max-width:620px){.panel#work .item .thumb,.panel#builds .item .thumb{grid-column:1 / -1;grid-row:3;width:calc(100% + 32px);margin:8px -16px 4px;height:124px;overflow:hidden}'
 '.panel#work .item .thumb svg,.panel#builds .item .thumb svg{height:100%;width:auto;margin:0 auto}.panel#work .item .d,.panel#builds .item .d{grid-row:4;grid-column:1 / -1}}')
 
+
+# ---- v5: redrawn, looser hand-drawn scenes (wobbly outlines, overshoots, hatching) ----
+THUMBCSS+='.thumb .sc .hat{stroke-width:1.1;opacity:.85}.thumb .sc.pen .hat{opacity:.5}'
+_SC['Agentic Creative Platform']=(
+ '<path d="M34 27C48 26 60 38 59 52 58 66 47 78 33 77 19 76 9 65 10 51 11 38 21 28 34 27Z"/>'
+ '<path d="M34 52L33 36M34 52L46 59"/><path d="M34 29v4M57 52h-4M34 75v-4M11 52h4"/>'
+ '<path d="M20 29l-6-6M48 29l6-6M14 74l-5 8M54 74l5 8"/>'
+ '<g class="hat"><path d="M41 71l13-13M46 74l11-11M36 74l15-15"/></g>'
+ '<path d="M101 22L151 25 149 84 99 81 101 22Z"/><path d="M98 80l-2-2M152 24l3 1"/>'
+ '<path d="M114 38c4-2 8 1 7 5-1 4-6 5-9 2-2-3-1-6 2-7z"/>'
+ '<path d="M100 79L119 56 130 68 138 59 149 77"/>'
+ '<g class="hat"><path d="M110 80l9-10M119 80l10-11M129 80l9-10M139 80l8-9"/></g>',
+ '<path d="M66 52C74 47 83 57 92 51M86 45l7 6-6 6"/><path d="M146 8v11M140.5 13.5h11M88 92v9M83.5 96.5h9"/>')
+_SC['Ad Quality']=(
+ '<path d="M14 24L72 21 74 86 13 89 14 24Z"/><path d="M22 33c8-1 18-1 28-2"/>'
+ '<path d="M20 80l15-19 10 12 8-8 11 13"/><path d="M28 47c3-2 7 0 6 3-1 3-5 3-7 1-1-1-1-3 1-4z"/>'
+ '<g class="hat"><path d="M30 84l9-10M40 84l9-10M50 84l8-9"/></g>'
+ '<path d="M127 18C135 24 143 26 151 27 151 46 148 66 127 88 106 70 103 47 104 28 113 27 120 24 127 18Z"/>'
+ '<path d="M114 54l9 10 17-20"/><g class="hat"><path d="M112 36l-1 14M118 33l-1 8"/></g>',
+ '<path d="M46 20C67 19 84 37 84 58S67 95 46 95 8 79 9 58 26 21 46 20Z"/><path d="M19 85L74 31"/>')
+_SC['Publisher Tooling']=(
+ '<path d="M13 14l21 1-1 20-20-1z"/><path d="M14 48l20-1 1 21-20 1z"/><path d="M13 82l21 1-1 20-20-1z"/>'
+ '<path d="M46 25c14-3 30 1 46-1M46 58c10-2 26 1 38-1M46 93c12-2 28 1 42-1"/>'
+ '<path d="M130 43C139 43 146 50 145 58S138 73 130 72 115 66 115 58 121 44 130 43Z"/><path d="M130 52c4 0 6 3 6 6s-3 6-6 6-6-3-6-6 2-6 6-6z"/>'
+ '<path class="tooth" d="M130 34v7M130 75v7M107 58h7M146 58h7M114 41l5 5M141 70l-5-5M146 41l-5 5M114 75l5-5"/>'
+ '<g class="hat"><path d="M54 33c8-1 22 0 30-1M54 66c6-1 16 0 24-1"/></g>',
+ '<path d="M18 24l5 6 10-12M18 58l5 6 10-12M18 93l5 6 10-12"/>')
+_SC['Trip Planner']=(
+ '<path d="M12 12C25 9 45 11 58 12c4 0 4 3 4 6v12c0 3-1 4-5 4H36l-9 9v-9H14c-3 0-4-2-4-5V17c0-3 0-5 2-5z"/>'
+ '<circle cx="23" cy="22" r="1.6" class="dotf"/><circle cx="35" cy="22" r="1.6" class="dotf"/><circle cx="47" cy="22" r="1.6" class="dotf"/>'
+ '<path d="M14 67C28 65 50 66 68 67c3 0 3 3 3 5v28c0 3-1 5-4 5-16 1-36 1-52 0-3 0-3-3-3-5V72c0-3 1-5 2-5z"/>'
+ '<path d="M32 66v-7c0-3 2-4 4-4h12c2 0 4 1 4 4v7M29 67l-1 38M56 67l1 38"/>'
+ '<g class="hat"><path d="M18 76l7-7M18 86l8-8M62 96l6-6M62 86l7-7"/></g>'
+ '<path d="M120 64C106 50 100 42 101 32 102 20 112 13 122 14c10 1 17 9 16 19-1 9-7 18-18 31Z"/><path d="M120 24c5 0 8 3 8 7s-4 8-8 7-8-3-8-7 3-7 8-7z"/>'
+ '<path d="M104 71c8 3 20 3 29 0"/>',
+ '<path class="trail" d="M76 86C104 98 134 90 122 72"/><path class="trail" d="M118 78l4-7 7 4"/>')
+_SC['Cycle Insights']=(
+ '<path d="M24 12C31 12 36 17 36 24S31 36 24 36 12 31 12 24 17 12 24 12Z"/>'
+ '<path d="M60 12C67 12 72 17 72 24S67 36 60 36 48 31 48 24 53 12 60 12Z"/><g class="hat"><path d="M52 18v13M55.5 14.5v20M59 13v22"/></g>'
+ '<path d="M96 12C103 12 108 17 108 24S103 36 96 36 84 31 84 24 89 12 96 12Z" class="solid"/>'
+ '<path d="M132 12C139 12 144 17 144 24S139 36 132 36 120 31 120 24 125 12 132 12Z"/><g class="hat"><path d="M136 15v19M139.5 17v15M143 21v8"/></g>'
+ '<path d="M40 24h4M76 24h4M112 24h4" stroke-dasharray="2 3"/>'
+ '<path d="M44 67C60 65 100 65 116 67 115 87 100 101 80 101S46 87 44 67Z"/>'
+ '<path d="M62 66C57 52 66 44 78 42 82 54 76 62 62 66ZM64 62L77 46"/><path d="M88 66c0-10 7-16 18-17 0 9-7 16-18 17z"/>'
+ '<g class="hat"><path d="M52 76l10 12M62 74l12 14M96 78l-9 14"/></g>'
+ '<path d="M133 70v12M127 76h12M26 82v8M22 86h8"/>',
+ '<path class="trail" d="M62 66C57 52 66 44 78 42 82 54 76 62 62 66z"/><path class="acc" d="M96 12C103 12 108 17 108 24S103 36 96 36 84 31 84 24 89 12 96 12Z"/>')
+_SC['Fintracker']=(
+ '<path d="M12 10c1 30 0 62 0 94 40 1 92 0 138 0"/>'
+ '<path d="M26 78h18v26H26Z"/><path d="M56 64h18v40H56Z"/><path d="M86 48h18v56H86Z"/>'
+ '<g class="hat"><path d="M28 100l14-14M28 92l14-14M58 100l14-14M58 90l14-14M58 80l14-14M88 100l14-14M88 90l14-14M88 80l14-14M88 70l14-14"/></g>'
+ '<ellipse cx="132" cy="97" rx="13" ry="4.5"/><path d="M119 97v-9M145 97v-9"/><ellipse cx="132" cy="88" rx="13" ry="4.5"/><path d="M119 88v-9M145 88v-9"/><ellipse cx="132" cy="79" rx="13" ry="4.5" class="fill"/>'
+ '<path d="M134 18C141 18 147 24 146 31S139 43 133 42 122 37 122 30 127 18 134 18Z"/><path d="M134 25c4 0 6 3 6 6s-3 6-6 6-6-3-6-6 2-6 6-6z"/>',
+ '<path class="trail" d="M20 62L52 46l24 8 38-30"/><path class="trail" d="M102 22l13 1-1 13"/>')

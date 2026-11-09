@@ -102,7 +102,7 @@ const JOBWORDS=['responsib','requirement','qualif','experience','you will','we a
 function looksLikeJob(t){ const s=t.toLowerCase(); return t.length>=200 && JOBWORDS.filter(w=>s.includes(w)).length>=4; }
 const FITLIM={last:0,n:0};
 function notJob(){
-  res.innerHTML='<p class="mhead"><span class="rest">Of course it\'s a</span> <span class="ten">10/10</span> <span class="rest">fit, if you ask me <svg class="smirk" viewBox="0 0 40 40" role="img" aria-label="smirking face"><g filter="url(#rough)"><path d="M20 4C11 3.6 4 10.5 4.4 20 4.8 29.5 12 36.4 21 35.8 30 35.2 36.4 28 35.8 19 35.3 10.8 29 4.3 20 4z"/><path d="M9.5 12.6c3-1.4 6-1.2 8.4.2"/><path d="M22.6 8.8c2.8-2 6-2 8.6-.2"/><path d="M9.6 18.8h8.6M22.4 18.8h8.6"/><path d="M10.6 18.8c.8 3 6 3 7 0M23.4 18.8c.8 3 6 3 7 0"/><circle cx="16.4" cy="21" r="1.1" fill="currentColor"/><circle cx="29.2" cy="21" r="1.1" fill="currentColor"/><path d="M13 28.4c4 1.2 9.6 .8 14.6-3.2"/><path d="M27.6 25.2l2.6-.4"/></g></svg></svg> That does not look like a job description though. Paste the responsibilities and requirements and I\'ll show you the receipts.</span></p>';
+  res.innerHTML='<p class="mhead nj"><span class="rest">Of course it\'s a</span> <span class="ten">10/10</span> <span class="rest">fit, if you ask me</span> <svg class="smirk" viewBox="0 0 40 40" role="img" aria-label="smirking face"><g filter="url(#rough)"><path d="M20 4C11 3.6 4 10.5 4.4 20 4.8 29.5 12 36.4 21 35.8 30 35.2 36.4 28 35.8 19 35.3 10.8 29 4.3 20 4z"/><path d="M9.5 12.6c3-1.4 6-1.2 8.4.2"/><path d="M22.6 8.8c2.8-2 6-2 8.6-.2"/><path d="M9.6 18.8h8.6M22.4 18.8h8.6"/><path d="M10.6 18.8c.8 3 6 3 7 0M23.4 18.8c.8 3 6 3 7 0"/><circle cx="16.4" cy="21" r="1.1" fill="currentColor"/><circle cx="29.2" cy="21" r="1.1" fill="currentColor"/><path d="M13 28.4c4 1.2 9.6 .8 14.6-3.2"/><path d="M27.6 25.2l2.6-.4"/></g></svg></p><p class="njsub">That does not look like a job description though. Paste the responsibilities and requirements and I\'ll show you the receipts.</p>';
   res.classList.add('on'); setTimeout(()=>burst(res.querySelector('.ten')),250);
 }
 '''
@@ -213,6 +213,10 @@ body.lock{overflow:hidden}
 @keyframes blink{50%{opacity:0}}
 .note{font-size:14px!important;color:var(--muted)!important}
 /* fit */
+#jdres{container-type:inline-size}
+.mhead.nj{display:block;width:100%;max-width:none;margin:0 0 var(--s3);font-size:clamp(22px,4.6cqw,52px);line-height:1.12;text-wrap:balance}
+.mhead.nj .ten{font-size:1em}
+.njsub{margin:0;font-size:17px;line-height:1.6;color:var(--soft);max-width:60ch}
 .smirk{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.25em;color:var(--hand);fill:none;stroke:var(--hand);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 #jdtext{border-radius:12px!important;background:var(--paper)!important;font-size:16px}
 .panel .box label{font-size:14.5px}
